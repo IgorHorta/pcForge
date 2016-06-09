@@ -9,7 +9,12 @@ class CustomizeController {
       "processador" : null,
       "placa mãe" : null,
       "placa de vídeo" : null,
-      "fonte": null
+      "fonte": null,
+      "cooler": null,
+      "driver": null,
+      "placa de som": null,
+      "disco rígido": null,
+      "ssd": null
     };
   }
 
