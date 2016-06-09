@@ -6,11 +6,12 @@
           span.input-group-btn
             button.btn.btn-default(type="button", ng-click='cs.search(searchTerm, key)')
               | {{key}}
-          form(ng-submit='cs.search(SearchTerm, key)')
-            input.form-control(ng-show="!cs.computer.key",type="text", placeholder="Buscar {{key}}", ng-model='searchTerm')
-          input.form-control(ng-disabled="cs.computer.key",ng-show="cs.computer.key.title",type="text", ng-model="cs.computer.key.title")
+          form(ng-submit='cs.search(searchTerm, key)')
+            input.form-control(ng-show="!cs.computer[key]",type="text", placeholder="Buscar {{key}}", ng-model='searchTerm')
+          input.form-control(ng-disabled="cs.computer[key]",ng-show="cs.computer[key].title",type="text", ng-model="cs.computer[key].title")
   
   div.row(ng-repeat="product in cs.searchResult")
+    .col-lg-12
       img.col-mg-3.product-img(src='{{product.img}}', alt='{{product.title}}')
       div.col-mg-6
         p

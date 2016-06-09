@@ -1,10 +1,12 @@
 'use strict';
 
+
 class CustomizeController {
   
 
   constructor($http) {
     this.$http = $http;
+    
     this.computer = {
       "processador" : null,
       "placa mãe" : null,
@@ -17,9 +19,7 @@ class CustomizeController {
       "ssd": null
     };
   }
-
   search(searchTerm,category){
-
     this.$http.get('/api/products/search/'+searchTerm+'/'+category)
         .then(response => {
           this.searchResult = response.data;
