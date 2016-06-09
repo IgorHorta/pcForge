@@ -1,0 +1,37 @@
+.container
+  .div(ng-repeat="(key, value) in cs.computer")
+    .row
+      .col-lg-12
+        div.input-group
+          span.input-group-btn
+            button.btn.btn-default(type="button", ng-click='cs.search(searchTerm, key)')
+              | {{key}}
+          form(ng-submit='cs.search(SearchTerm, key)')
+            input.form-control(ng-show="!cs.computer.key",type="text", placeholder="Buscar {{key}}", ng-model='searchTerm')
+          input.form-control(ng-disabled="cs.computer.key",ng-show="cs.computer.key.title",type="text", ng-model="cs.computer.key.title")
+  
+div.row(ng-repeat="product in cs.searchResult")
+    img.col-mg-3.product-img(src='{{product.img}}', alt='{{product.title}}')
+    div.col-mg-6
+      p
+        | {{product.title}}
+      P
+        | {{product.price}}
+      P
+        | {{product.store}}
+    button.btn.btn-default.col-mg-3(type="button", ng-click='cs.addItem(product)')
+      | Escolher
+
+hr
+
+
+
+
+
+
+
+
+
+
+
+

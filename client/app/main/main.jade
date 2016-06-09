@@ -1,0 +1,19 @@
+header#banner.hero-unit
+  .container
+    h1 Bem Vindo ao pcForge
+    p.lead Este é o protótipo do pcForge
+    img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
+
+.container
+  .row
+    a.btn.btn-primary.btn-lg.btn-block.thing-form(type="button", href='/customize')
+      | Clique Aqui Para Começar!
+
+.container
+  .row
+    .col-lg-12
+      h1.page-header Alguns produtos:
+      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='product in $ctrl.productsExamples')
+        li
+          a(href='#', uib-tooltip='{{product.title}}')
+            | {{product.title}}
