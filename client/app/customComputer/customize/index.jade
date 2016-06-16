@@ -17,7 +17,7 @@
         p
           | {{product.title}}
         P
-          | {{product.price}}
+          | {{cs.Util.convertToReais(product.price)}}
         P
           | {{product.store}}
       button.btn.btn-default.col-mg-3(type="button", ng-click='cs.addItem(product)')

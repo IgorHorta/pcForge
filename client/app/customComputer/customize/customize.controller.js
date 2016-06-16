@@ -4,8 +4,9 @@
 class CustomizeController {
   
 
-  constructor($http) {
+  constructor($http,Util) {
     this.$http = $http;
+    this.Util = Util;
     
     this.computer = {
       "processador" : null,
@@ -18,9 +19,11 @@ class CustomizeController {
       "disco rígido": null,
       "ssd": null
     };
+
   }
+  
   search(searchTerm,category){
-    this.$http.get('/api/products/search/'+searchTerm+'/'+category)
+    this.$http.get('/api/products/search/'+searchTerm+'/'+category+'/'+1)
         .then(response => {
           this.searchResult = response.data;
         });

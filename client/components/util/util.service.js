@@ -17,6 +17,31 @@
         return angular.isFunction(cb) ? cb : angular.noop;
       },
 
+      
+      /**
+      * Retorna o valor convertido em reais
+      * @param {int} o valor a ser convertido
+      * @param {String} valor em reais
+      */ 
+      convertToReais(valor){
+        var tmp = valor+'';
+        tmp = tmp.replace(/([0-9]{2})$/g, ",$1");
+        if( tmp.length > 6 )
+                tmp = tmp.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+
+        return 'R$ '+tmp;
+      },
+
+      /**
+      * Retorna o valor convertido em int
+      * @param {int} o valor a ser convertido
+      * @param {String} valor representativo em reais
+      */
+      convertReaisToInt(valor){
+        return parseInt( valor.replace(/[\D]+/g,'') );
+      },
+
+
       /**
        * Parse a given url with the use of an anchor element
        *

@@ -71,9 +71,20 @@ export function index(req, res) {
 // TODO refinar busca, colocar limitações e habilitar paginação
 export function search(req, res){
 
-  var regex = new RegExp(req.params.searchTerm, "i")
+  var regex = new RegExp(req.params.searchTerm, "i"),
+  ascending  = req.params.ascending,
+  order = (req.params.order||"price"),
+  searchOps;
 
-  return Product.find({title:regex, category:req.params.category}).limit(6).sort("-title").exec()
+  if(ascending  != undefined){
+    ascending  = (ascending  == 1 ? '+':'-')
+  }else{
+    ascending  = '+';
+  }
+
+  searchOps = ascending+order;
+
+  return Product.find({title:regex, category:req.params.category}).limit(6).sort(searchOps).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
