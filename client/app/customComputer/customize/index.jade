@@ -18,7 +18,7 @@
   
   div.row(ng-repeat="product in cs.searchResult")
     .col-lg-12
-      img.col-mg-3.product-img(src='{{product.img}}', alt='{{product.title}}')
+      img.col-mg-3.product-img(src='{{product.img}}', alt='{{product.title}}' image-loaded)
       div.col-mg-6
         p
           | {{product.title}}
