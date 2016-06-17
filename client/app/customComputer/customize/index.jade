@@ -1,14 +1,20 @@
 .container
-  div(ng-repeat="(key, value) in cs.computer")
+  div(ng-repeat="(key, value) in cs.computer.components")
     .row.product-search
       .col-lg-12
-        div.input-group
+        div.input-group.col-mg-6
           span.input-group-btn
             button.btn.btn-default(type="button", ng-click='cs.search(searchTerm, key)')
               | {{key}}
           form(ng-submit='cs.search(searchTerm, key)')
-            input.form-control(ng-show="!cs.computer[key]",type="text", placeholder="Buscar {{key}}", ng-model='searchTerm')
-          input.form-control(ng-disabled="cs.computer[key]",ng-show="cs.computer[key].title",type="text", ng-model="cs.computer[key].title")
+            input.form-control(ng-show="!cs.computer.components[key]",type="text", placeholder="Buscar {{key}}", ng-model='searchTerm')
+          input.form-control(ng-disabled="cs.computer.components[key]",ng-show="cs.computer.components[key].title",type="text", ng-model="cs.computer.components[key].title")
+        .col-mg-3
+          div(ng-show="cs.computer.components[key]")
+            p
+              | {{cs.Util.convertToReais(cs.computer.components[key].price)}}
+            p
+              | {{cs.calcTotalPercentage(cs.computer.components[key])}}%
   
   div.row(ng-repeat="product in cs.searchResult")
     .col-lg-12
@@ -22,6 +28,9 @@
           | {{product.store}}
       button.btn.btn-default.col-mg-3(type="button", ng-click='cs.addItem(product)')
         | Escolher
+
+  p
+    | {{cs.Util.convertToReais(cs.computer.totalPrice)}}
 
 hr
 

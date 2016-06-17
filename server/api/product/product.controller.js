@@ -77,14 +77,18 @@ export function search(req, res){
   searchOps;
 
   if(ascending  != undefined){
-    ascending  = (ascending  == 1 ? '+':'-')
+    ascending  = (ascending  == 1 ? '':'-')
   }else{
-    ascending  = '+';
+    ascending  = '';
   }
 
   searchOps = ascending+order;
 
-  return Product.find({title:regex, category:req.params.category}).limit(6).sort(searchOps).exec()
+  return Product.find({title:regex, category:req.params.category}).where('price')
+  .gte(0)
+  .ne(null)
+  .limit(6)
+  .sort(searchOps).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

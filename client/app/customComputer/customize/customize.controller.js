@@ -9,29 +9,39 @@ class CustomizeController {
     this.Util = Util;
     
     this.computer = {
-      "processador" : null,
-      "placa mãe" : null,
-      "placa de vídeo" : null,
-      "fonte": null,
-      "cooler": null,
-      "driver": null,
-      "placa de som": null,
-      "disco rígido": null,
-      "ssd": null
+      "components":{
+        "processador" : null,
+        "placa mãe" : null,
+        "placa de vídeo" : null,
+        "fonte": null,
+        "cooler": null,
+        "driver": null,
+        "placa de som": null,
+        "disco rígido": null,
+        "ssd": null
+      },
+      "totalPrice": 0
     };
 
   }
   
   search(searchTerm,category){
-    this.$http.get('/api/products/search/'+searchTerm+'/'+category+'/'+1)
+    this.$http.get('/api/products/search/'+searchTerm+'/'+category+'/'+'price'+'/'+'1')
         .then(response => {
           this.searchResult = response.data;
         });
   }
 
   addItem(product){
-    this.computer[product.category] = product;
+    this.computer.components[product.category] = product;
+    this.computer.totalPrice += product.price;
     this.searchResult = {};
+  }
+
+
+
+  calcTotalPercentage(product){
+    return (100 * product.price/this.computer.totalPrice).toFixed(2);
   }
 
 
