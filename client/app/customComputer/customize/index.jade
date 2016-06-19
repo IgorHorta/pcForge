@@ -18,7 +18,7 @@
   
   div.row(ng-repeat="product in cs.searchResult")
     .col-lg-12
-      img.col-mg-3.product-img(src='{{product.img}}', alt='{{product.title}}' image-loaded)
+      img.col-mg-3.product-img(ng-src='{{product.img}}', alt='{{product.title}}' image-loaded)
       div.col-mg-6
         p
           | {{product.title}}
@@ -28,6 +28,7 @@
           | {{product.store}}
       button.btn.btn-default.col-mg-3(type="button", ng-click='cs.addItem(product)')
         | Escolher
+  uib-pagination.pagination-sm(boundary-links="true" total-items="cs.totalItems" ng-model="cs.currentPage"  previous-text="<" next-text="<" first-text="<<" last-text=">>")
 
   p
     | {{cs.Util.convertToReais(cs.computer.totalPrice)}}

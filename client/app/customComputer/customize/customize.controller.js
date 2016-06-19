@@ -23,6 +23,12 @@ class CustomizeController {
       "totalPrice": 0
     };
 
+
+    this.totalItems = 64;
+    this.currentPage = 4;
+    this.maxSize = 5;
+    this.bigTotalItems = 175;
+    this.bigCurrentPage = 1;
   }
   
   search(searchTerm,category){
@@ -41,9 +47,22 @@ class CustomizeController {
 
 
   calcTotalPercentage(product){
+    if(!product){
+      return 0;
+    }
+
     return (100 * product.price/this.computer.totalPrice).toFixed(2);
   }
 
+  
+
+  setPage(pageNo) {
+    this.currentPage = pageNo;
+  };
+
+  pageChanged() {
+    console.log("mudou a pagina");
+  };
 
 }
 

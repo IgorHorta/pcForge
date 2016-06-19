@@ -5,12 +5,11 @@ angular.module('pcForgeApp')
     return {
       restrict: 'A',
         link: function(scope, element, attrs) {
-        	console.log("esafsffs");
-            element.bind('load', function() {
-                console.log("sucesso");
-            });
+        	if(_.isEmpty(attrs.ngSrc)){
+				element.attr('src', '../../assets/images/yeoman.png');
+			}
+
             element.bind('error', function(){
-            	console.log("deu zebra");
                 element.attr('src', '../../assets/images/yeoman.png'); // set default image
             });
         }
