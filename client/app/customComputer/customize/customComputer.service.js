@@ -33,6 +33,9 @@
 
 
     var CustomComputerService = {  
+      addComponent(product){
+        computer[product.category] = product;
+      },
       getComputer(){
         return computer;
       },

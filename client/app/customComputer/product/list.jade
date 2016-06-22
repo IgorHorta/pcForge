@@ -1,0 +1,11 @@
+.container
+	div.row(ng-repeat="product in pc.productList")
+		.col-lg-12
+			img.col-mg-3.product-img(ng-src='{{product.img}}', alt='{{product.title}}' image-loaded)
+			div.col-mg-6
+				p
+					| {{product.title}}
+				P
+					| {{pc.Util.convertToReais(product.price)}}
+				p
+					| {{product.store}}
