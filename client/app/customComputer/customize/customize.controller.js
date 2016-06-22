@@ -4,24 +4,12 @@
 class CustomizeController {
   
 
-  constructor($http,Util) {
+  constructor($http,Util,CustomComputerService) {
     this.$http = $http;
     this.Util = Util;
-    
-    this.computer = {
-      "components":{
-        "processador" : null,
-        "placa mãe" : null,
-        "placa de vídeo" : null,
-        "fonte": null,
-        "cooler": null,
-        "driver": null,
-        "placa de som": null,
-        "disco rígido": null,
-        "ssd": null
-      },
-      "totalPrice": 0
-    };
+    this.CustomComputerService = CustomComputerService;
+
+    this.computer = this.CustomComputerService.getComputer();
 
 
     this.totalItems = 64;

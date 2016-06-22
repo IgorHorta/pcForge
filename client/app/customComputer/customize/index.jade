@@ -28,7 +28,7 @@
           | {{product.store}}
       button.btn.btn-default.col-mg-3(type="button", ng-click='cs.addItem(product)')
         | Escolher
-  uib-pagination.pagination-sm(boundary-links="true" total-items="cs.totalItems" ng-model="cs.currentPage"  previous-text="<" next-text="<" first-text="<<" last-text=">>")
+  uib-pagination.pagination-sm(boundary-links="true" total-items="cs.totalItems" ng-model="cs.currentPage"  previous-text="<" next-text=">" first-text="<<" last-text=">>")
 
   p
     | {{cs.Util.convertToReais(cs.computer.totalPrice)}}

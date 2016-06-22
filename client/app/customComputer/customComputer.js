@@ -6,5 +6,10 @@ angular.module('pcForgeApp')
         templateUrl: 'app/customComputer/customize/index.html',
         controller: 'CustomizeController',
         controllerAs: 'cs'
+      }).when('/product/:categoryId', {
+      	templateUrl: 'app/customComputer/product/list.html',
+        controller: 'ProductController',
+        controllerAs: 'pc'
       });
+
   });
