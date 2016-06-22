@@ -1,37 +1,8 @@
 .container
-  div(ng-repeat="(key, value) in cs.computer.components")
-    .row.product-search
-      .col-lg-12
-        div.input-group.col-mg-6
-          span.input-group-btn
-            button.btn.btn-default(type="button", ng-click='cs.search(searchTerm, key)')
-              | {{key}}
-          form(ng-submit='cs.search(searchTerm, key)')
-            input.form-control(ng-show="!cs.computer.components[key]",type="text", placeholder="Buscar {{key}}", ng-model='searchTerm')
-          input.form-control(ng-disabled="cs.computer.components[key]",ng-show="cs.computer.components[key].title",type="text", ng-model="cs.computer.components[key].title")
-        .col-mg-3
-          div(ng-show="cs.computer.components[key]")
-            p
-              | {{cs.Util.convertToReais(cs.computer.components[key].price)}}
-            p
-              | {{cs.calcTotalPercentage(cs.computer.components[key])}}%
-  
-  div.row(ng-repeat="product in cs.searchResult")
-    .col-lg-12
-      img.col-mg-3.product-img(ng-src='{{product.img}}', alt='{{product.title}}' image-loaded)
-      div.col-mg-6
-        p
-          | {{product.title}}
-        P
-          | {{cs.Util.convertToReais(product.price)}}
-        P
-          | {{product.store}}
-      button.btn.btn-default.col-mg-3(type="button", ng-click='cs.addItem(product)')
-        | Escolher
-  uib-pagination.pagination-sm(boundary-links="true" total-items="cs.totalItems" ng-model="cs.currentPage"  previous-text="<" next-text=">" first-text="<<" last-text=">>")
-
-  p
-    | {{cs.Util.convertToReais(cs.computer.totalPrice)}}
-
-hr
+  div.list-group(ng-repeat="(key, value) in cs.computer.components")
+    a.list-group-item(ng-href="product/{{cs.componentDic[key]}}")
+      h4.list-group-item-heading 
+        | {{key}}
+      p.list-group-item-text
+        | clique aqui para escolher
 

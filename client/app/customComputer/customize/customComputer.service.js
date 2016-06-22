@@ -42,6 +42,13 @@
       getCategoryDic(){
         return componentsCategoryDic;
       },
+      getCategoryById(id){
+        for (var property in componentsCategoryDic) {
+          if (componentsCategoryDic[property] == id) {
+            return property;
+          }
+        }
+      }
     };
 
     return CustomComputerService;

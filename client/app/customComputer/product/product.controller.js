@@ -4,15 +4,19 @@
 class ProductController {
   
 
-  constructor($http,Util,CustomComputerService) {
+  constructor($http,Util,CustomComputerService,$routeParams) {
     this.$http = $http;
     this.Util = Util;
     this.CustomComputerService = CustomComputerService;
-    this.search('a','ssd');
+    this.componentDic = CustomComputerService.getCategoryDic;
+    this.categoryId = $routeParams.categoryId;
+
+    this.categoryKey = CustomComputerService.getCategoryById(this.categoryId);
+    this.search('a', this.categoryKey);
   }
   
   search(searchTerm,category){
-    this.$http.get('/api/products/search/'+searchTerm+'/'+category+'/'+'price'+'/'+'1')
+    this.$http.get('/api/products/search/'+searchTerm+'/'+category+'/'+'price'+'/'+'0')
         .then(response => {
           this.productList = response.data;
         });
