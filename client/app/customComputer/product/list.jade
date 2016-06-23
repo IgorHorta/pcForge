@@ -1,20 +1,36 @@
 .container
-	nav.navbar-default
-		div.collapse.navbar-collapse
+	nav.navbar.navbar-default
+		.container-fluid
 			ul.nav.navbar-nav
-				li.dropdown
-					a.dropdown-toggle(href="#",data-toggle="dropdown")
+				li.dropdown(uib-dropdown)
+					a(uib-dropdown-toggle,href)
+						| Maldição do infernoaas
+						span.caret
+					ul.dropdown-menu(uib-dropdown-menu)
+						li
+							a(href="#")
+								|bosta123
+						li
+							a(href="#")
+								|bosta2
+						li
+							a(href="#")
+								|bosta3
 
+				.btn-group.navbar-form.navbar-left
+					label.btn.btn-primary(ng-model="order", uib-btn-checkbox)
+						| Menor Preço
+					label.btn.btn-primary(ng-model="order",uib-btn-checkbox)
+						| Maior Preço
+			form.navbar-form.navbar-left(role="search")
+				.form-group
+					input.form-control(type="text",placeholder="Buscar")
+				button.btn.btn-default(type="submit")
+					| Escolher
 
-
-
-
-
-
-
-	div.list-group(ng-repeat="product in pc.productList")
-		div.list-group-item
-			img.product-img(ng-src='{{product.img}}', alt='{{product.title}}' image-loaded)
+	.list-group(ng-repeat="product in pc.productList")
+		.list-group-item
+			img.product-img(ng-src='{{product.img}}', alt='{{product.title}}', image-loaded)
 			div
 				p
 					| {{product.title}}
