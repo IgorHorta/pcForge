@@ -8,15 +8,23 @@ class ProductController {
     this.$http = $http;
     this.Util = Util;
     this.CustomComputerService = CustomComputerService;
+    
     this.componentDic = CustomComputerService.getCategoryDic;
     this.categoryId = $routeParams.categoryId;
-
     this.categoryKey = CustomComputerService.getCategoryById(this.categoryId);
-    this.search('a', this.categoryKey);
+    
+    this.cheaper = '1';
+
+    this.totalItems = 64;
+    this.currentPage = 4;
+    this.maxSize = 6;
+    this.numPages = 5;
+
+    this.search('a');
   }
   
-  search(searchTerm,category){
-    this.$http.get('/api/products/search/'+searchTerm+'/'+category+'/'+'price'+'/'+'0')
+  search(searchTerm){
+    this.$http.get('/api/products/search/'+searchTerm+'/'+this.categoryKey+'/'+'price'+'/'+this.cheaper)
         .then(response => {
           this.productList = response.data;
         });
@@ -26,6 +34,13 @@ class ProductController {
     this.CustomComputerService.addComponent(product);
   }
 
+  setPage(pageNo) {
+    this.currentPage = pageNo;
+  }
+
+  pageChanged() {
+    console.log('Page changed to: ' + $scope.currentPage);
+  }
 
   calcTotalPercentage(product){
     if(!product){
