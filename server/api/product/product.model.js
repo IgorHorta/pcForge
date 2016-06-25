@@ -1,6 +1,7 @@
 'use strict';
 
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate';
 
 var ProductSchema = new mongoose.Schema({
   category: String,
@@ -11,5 +12,7 @@ var ProductSchema = new mongoose.Schema({
   price: Number,
   store: String
 });
+
+ProductSchema.plugin(mongoosePaginate);
 
 export default mongoose.model('Product', ProductSchema);

@@ -8,7 +8,7 @@
 			.navbar-form.navbar-left
 				label.btn.btn-primary(ng-model="pc.cheaper", uib-btn-radio="'1'")
 					| Menor Preço
-				label.btn.btn-primary(ng-model="pc.cheaper", uib-btn-radio="'0'")
+				label.btn.btn-primary(ng-model="pc.cheaper", uib-btn-radio="'-1'")
 					| Maior Preço
 			.navbar-form
 				button.btn.btn-default(type="submit",ng-click="pc.search(searchTerm)")
@@ -24,4 +24,4 @@
 					| {{pc.Util.convertToReais(product.price)}}
 				p
 					| {{product.store}}
-	uib-pagination(direction-links="false",total-items="pc.totalItems",ng-model="pc.currentPage",num-pages="pc.numPages")
+	uib-pagination(items-per-page="20",direction-links="false",ng-change="pc.search(searchTerm)",total-items="pc.totalItems",ng-model="pc.currentPage")

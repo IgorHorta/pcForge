@@ -15,18 +15,30 @@ class ProductController {
     
     this.cheaper = '1';
 
-    this.totalItems = 64;
-    this.currentPage = 4;
-    this.maxSize = 6;
-    this.numPages = 5;
+    this.totalItems = 0;
+    this.pages = 0;
+    this.currentPage = 1;
+    this.maxSize = 20;
+    
 
-    this.search('a');
+    this.search('-1');
   }
   
   search(searchTerm){
-    this.$http.get('/api/products/search/'+searchTerm+'/'+this.categoryKey+'/'+'price'+'/'+this.cheaper)
+
+    if(!searchTerm){
+      searchTerm = '-1';
+    }
+
+    this.$http.get('/api/products/search/'+searchTerm+'/'+this.categoryKey+'/'
+      +'price'+'/'+this.cheaper+'/'+this.currentPage)
         .then(response => {
-          this.productList = response.data;
+          
+          this.productList = response.data.docs;
+          this.totalItems = response.data.total;
+          this.currentPage = response.data.page;
+          this.pages = response.data.pages;
+
         });
   }
 
@@ -39,7 +51,7 @@ class ProductController {
   }
 
   pageChanged() {
-    console.log('Page changed to: ' + $scope.currentPage);
+    pc.search(searchTerm);
   }
 
   calcTotalPercentage(product){

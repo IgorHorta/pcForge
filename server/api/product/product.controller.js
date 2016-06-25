@@ -76,21 +76,19 @@ export function search(req, res){
   order = (req.params.order||"price"),
   searchOps;
 
-  if(ascending  != undefined){
-    ascending  = (ascending  == 1 ? '':'-')
-  }else{
-    ascending  = '';
+  if(!ascending){
+    ascending  = 1;
   }
 
-  searchOps = ascending+order;
+  if(req.params.searchTerm == '-1'){
+    return Product.paginate({category:req.params.category,'price':{$gt:0,$ne:null}},{page:req.params.page, limit: 20, sort:{'price':ascending}})
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  }
 
-  return Product.find({title:regex, category:req.params.category}).where('price')
-  .gte(0)
-  .ne(null)
-  .limit(6)
-  .sort(searchOps).exec()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+  return Product.paginate({ title:regex, category:req.params.category},{page:req.params.page, limit: 20, sort:{'price':ascending}})
+      .then(respondWithResult(res))
+      .catch(handleError(res)); 
 }
 
 // Gets a single Product from the DB
