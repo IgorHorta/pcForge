@@ -18,8 +18,8 @@
 						br
 					span
 							| {{cs.computer.components[key].store}}
-				div.pull-right.badge(uib-tooltip="Equivale a {{cs.CustomComputerService.calcTotalPercentage(key)}}  % do preço total")
-					| {{cs.CustomComputerService.calcTotalPercentage(key)}} %
+				div.pull-right.badge(uib-tooltip="Equivale a {{cs.calcTotalPercentage(cs.computer.components[key])}}  % do preço total")
+					| {{cs.calcTotalPercentage(cs.computer.components[key])}} %
 
 	div.panel.panel-default
 		div.panel-body

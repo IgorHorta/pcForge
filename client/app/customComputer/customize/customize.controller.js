@@ -16,6 +16,15 @@ class CustomizeController {
   saveComputer(){
   	this.CustomComputerService.saveComputerInLocalStorage();
   }
+
+  calcTotalPercentage(product){
+        if(!product){
+          return 0;
+        }
+        if(product.price != undefined)
+          return (100 * product.price/this.computer.totalPrice).toFixed(2);
+        return 0;
+	}
 }
 
 angular.module('pcForgeApp')

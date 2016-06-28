@@ -50,15 +50,6 @@
           }
         }
       },
-      calcTotalPercentage(category){
-        if(!category){
-          return 0;
-        }
-        var product = computer.components[category];  
-        if(product && product.price != undefined)
-          return (100 * product.price/computer.totalPrice).toFixed(2);
-        return 0;
-      },
       saveComputerInLocalStorage(){
         localStorage.custom_computer = angular.toJson(computer);
       },
