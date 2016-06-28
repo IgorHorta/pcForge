@@ -34,7 +34,8 @@
 
     var CustomComputerService = {  
       addComponent(product){
-        computer[product.category] = product;
+        computer.components[product.category] = product;
+        computer.totalPrice += product.price;
       },
       getComputer(){
         return computer;
@@ -48,6 +49,21 @@
             return property;
           }
         }
+      },
+      calcTotalPercentage(category){
+        if(!category){
+          return 0;
+        }
+        var product = computer.components[category];  
+        if(product && product.price != undefined)
+          return (100 * product.price/computer.totalPrice).toFixed(2);
+        return 0;
+      },
+      saveComputerInLocalStorage(){
+        localStorage.custom_computer = angular.toJson(computer);
+      },
+      loadComputerFromLocalStorage(){
+        return angular.fromJson(localStorage.custom_computer);
       }
     };
 

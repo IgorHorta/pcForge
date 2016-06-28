@@ -4,10 +4,11 @@
 class ProductController {
   
 
-  constructor($http,Util,CustomComputerService,$routeParams) {
+  constructor($http,Util,CustomComputerService,$routeParams,$location) {
     this.$http = $http;
     this.Util = Util;
     this.CustomComputerService = CustomComputerService;
+    this.$location = $location;
     
     this.componentDic = CustomComputerService.getCategoryDic;
     this.categoryId = $routeParams.categoryId;
@@ -44,6 +45,7 @@ class ProductController {
 
   addItem(product){
     this.CustomComputerService.addComponent(product);
+    this.$location.path("/customize");
   }
 
   setPage(pageNo) {
@@ -52,14 +54,6 @@ class ProductController {
 
   pageChanged() {
     pc.search(searchTerm);
-  }
-
-  calcTotalPercentage(product){
-    if(!product){
-      return 0;
-    }
-
-    return (100 * product.price/this.computer.totalPrice).toFixed(2);
   }
 
 }

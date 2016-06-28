@@ -1,8 +1,30 @@
 .container
-  div.list-group(ng-repeat="(key, value) in cs.computer.components")
-    a.list-group-item(ng-href="product/{{cs.componentDic[key]}}")
-      h4.list-group-item-heading 
-        | {{key}}
-      p.list-group-item-text
-        | clique aqui para escolher
+	div.list-group(ng-repeat="(key, value) in cs.computer.components")
+		div(ng-show="!cs.computer.components[key]")
+			a.list-group-item(ng-href="product/{{cs.componentDic[key]}}")
+				h4.list-group-item-heading 
+					| {{key}}
+				p.list-group-item-text
+					| clique aqui para escolher
+		div(ng-show="cs.computer.components[key]")
+			.list-group-item.clearfix
+				img.product-img(ng-src='{{cs.computer.components[key].img}}', alt='{{cs.computer.components[key].title}}', image-loaded)
+				span
+					span
+							| {{cs.computer.components[key].title}}
+						br
+					span
+							| {{cs.Util.convertToReais(cs.computer.components[key].price)}}
+						br
+					span
+							| {{cs.computer.components[key].store}}
+				div.pull-right.badge(uib-tooltip="Equivale a {{cs.CustomComputerService.calcTotalPercentage(key)}}  % do preço total")
+					| {{cs.CustomComputerService.calcTotalPercentage(key)}} %
 
+	div.panel.panel-default
+		div.panel-body
+			span Preço Total:
+			span.pull-right.badge(uib-tooltip="Preço Total")
+				| {{cs.Util.convertToReais(cs.computer.totalPrice)}}
+			a.pull-right(href="#")
+				span.glyphicon.glyphicon-floppy-save(ng-click="cs.saveComputer()", uib-tooltip="Salvar este computador")

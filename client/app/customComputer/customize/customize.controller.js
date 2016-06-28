@@ -9,11 +9,13 @@ class CustomizeController {
     this.Util = Util;
     this.CustomComputerService = CustomComputerService;
 
-    this.computer = this.CustomComputerService.getComputer();
+    this.computer = this.CustomComputerService.loadComputerFromLocalStorage() || this.CustomComputerService.getComputer();
     this.componentDic = this.CustomComputerService.getCategoryDic();
-
   }
 
+  saveComputer(){
+  	this.CustomComputerService.saveComputerInLocalStorage();
+  }
 }
 
 angular.module('pcForgeApp')

@@ -15,13 +15,20 @@
 						| Buscar
 
 	.list-group(ng-repeat="product in pc.productList")
-		.list-group-item
+		.list-group-item.clearfix
 			img.product-img(ng-src='{{product.img}}', alt='{{product.title}}', image-loaded)
-			div
-				p
-					| {{product.title}}
-				P
-					| {{pc.Util.convertToReais(product.price)}}
-				p
-					| {{product.store}}
-	uib-pagination(items-per-page="20",direction-links="false",ng-change="pc.search(searchTerm)",total-items="pc.totalItems",ng-model="pc.currentPage")
+			span
+				span
+						| {{product.title}}
+					br
+				span
+						| {{pc.Util.convertToReais(product.price)}}
+					br
+				span
+						| {{product.store}}
+					br
+				span.pull-right
+					button.btn.btn-default(ng-click="pc.addItem(product)")
+						| Escolher
+
+	uib-pagination(items-per-page="20",direction-links="false",ng-change="pc.search(searchTerm)",total-items="pc.totalItems",ng-model="pc.currentPage",num-pages="pc.pages")
