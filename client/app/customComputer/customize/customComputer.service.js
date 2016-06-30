@@ -13,7 +13,8 @@
       "driver": 6,
       "placa de som": 7,
       "disco rígido": 8,
-      "ssd": 9
+      "ssd": 9,
+      "memória RAM": 10
     };
 
     var computer = {
@@ -26,7 +27,8 @@
           "driver": null,
           "placa de som": null,
           "disco rígido": null,
-          "ssd": null
+          "ssd": null,
+          "memória RAM": null
         },
         totalPrice: 0
       };

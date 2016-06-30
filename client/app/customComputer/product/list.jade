@@ -31,6 +31,4 @@
 					button.btn.btn-default(ng-click="pc.addItem(product)")
 						| Escolher
 
-	uib-pagination(items-per-page="20",direction-links="false",ng-change="pc.search(searchTerm)",total-items="pc.totalItems",ng-model="pc.currentPage",num-pages="pc.pages",rotate="true",force-ellipses="true")
-
-	uib-pagination.pagination-sm(total-items="pc.totalItems",ng-model="pc.currentPage",max-size="pc.maxSize",boundary-links="true" num-pages="pc.pages")
+	uib-pagination.pagination-sm(items-per-page="20",ng-change="pc.search(searchTerm)",total-items="pc.totalItems",ng-model="pc.currentPage",max-size="10",boundary-links="true" num-pages="pc.pages")
