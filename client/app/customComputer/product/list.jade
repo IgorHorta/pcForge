@@ -1,7 +1,8 @@
 .container
 	nav.navbar.navbar-default
 		.container-fluid
-
+			div.navbar-brand(href="#")
+				| {{pc.categoryKey}}
 			form.navbar-form.navbar-left(role="search")
 				div.form-group
 					input.form-control(type="text",ng-model="searchTerm",placeholder="Buscar")
@@ -31,4 +32,4 @@
 					button.btn.btn-default(ng-click="pc.addItem(product)")
 						| Escolher
 
-	uib-pagination.pagination-sm(items-per-page="20",ng-change="pc.search(searchTerm)",total-items="pc.totalItems",ng-model="pc.currentPage",max-size="10",boundary-links="true" num-pages="pc.pages")
+	uib-pagination.pagination-sm(items-per-page="5",ng-change="pc.search(searchTerm)",total-items="pc.totalItems",ng-model="pc.currentPage",max-size="10",boundary-links="true" num-pages="pc.pages")

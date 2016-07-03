@@ -1,4 +1,13 @@
 .container
+	div.panel.panel-default
+		div.panel-body
+			span Preço Total:
+			button.btn.btn-default.left-space.pull-right(ng-click="cs.saveComputer()", uib-tooltip="Salvar este computador")
+				span.glyphicon.glyphicon-floppy-save
+				| Salvar
+			span.pull-right.badge(uib-tooltip="Preço Total")
+				| {{cs.Util.convertToReais(cs.computer.totalPrice)}}
+
 	div.list-group(ng-repeat="(key, value) in cs.computer.components")
 		div(ng-show="!cs.computer.components[key]")
 			a.list-group-item(ng-href="product/{{cs.componentDic[key]}}")
@@ -9,22 +18,17 @@
 		div(ng-show="cs.computer.components[key]")
 			.list-group-item.clearfix
 				img.product-img(ng-src='{{cs.computer.components[key].img}}', alt='{{cs.computer.components[key].title}}', image-loaded)
-				span
+				a.product-link(target="_blank",ng-href='{{cs.computer.components[key].link}}')
 					span
-							| {{cs.computer.components[key].title}}
-						br
+						| {{cs.computer.components[key].title}}
+				
+				.pull-right.left-space
+					.badge(uib-tooltip="Equivale a {{cs.calcTotalPercentage(cs.computer.components[key])}}  % do preço total")
+						| {{cs.calcTotalPercentage(cs.computer.components[key])}} %
+				.pull-right
+					h4
+						|Total: {{cs.Util.convertToReais(cs.computer.components[key].price)}}
 					span
-							| {{cs.Util.convertToReais(cs.computer.components[key].price)}}
-						br
-					span
-							| {{cs.computer.components[key].store}}
-				div.pull-right.badge(uib-tooltip="Equivale a {{cs.calcTotalPercentage(cs.computer.components[key])}}  % do preço total")
-					| {{cs.calcTotalPercentage(cs.computer.components[key])}} %
+						|Loja: {{cs.computer.components[key].store}}
 
-	div.panel.panel-default
-		div.panel-body
-			span Preço Total:
-			span.pull-right.badge(uib-tooltip="Preço Total")
-				| {{cs.Util.convertToReais(cs.computer.totalPrice)}}
-			a.pull-right(href="#")
-				span.glyphicon.glyphicon-floppy-save(ng-click="cs.saveComputer()", uib-tooltip="Salvar este computador")
+	

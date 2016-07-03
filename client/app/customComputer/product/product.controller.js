@@ -19,7 +19,7 @@ class ProductController {
     this.totalItems = 0;
     this.pages = 0;
     this.currentPage = 1;
-    this.maxSize = 20;
+    this.maxSize = 5;
     
 
     this.search('-1');
@@ -32,7 +32,7 @@ class ProductController {
     }
 
     this.$http.get('/api/products/search/'+searchTerm+'/'+this.categoryKey+'/'
-      +'price'+'/'+this.cheaper+'/'+this.currentPage)
+      +'price'+'/'+this.cheaper+'/'+this.currentPage+'/'+this.maxSize)
         .then(response => {
           
           this.productList = response.data.docs;

@@ -73,25 +73,27 @@ export function search(req, res){
 
   var regex = new RegExp(req.params.searchTerm, "i"),
   ascending  = req.params.ascending,
-  order = (req.params.order||"price"),
-  searchOps;
+  maxSize = parseInt(req.params.maxSize);
+  if(!maxSize){
+    maxSize = 20;
+  }
 
   if(!ascending){
     ascending  = 1;
   }
 
   if(req.params.searchTerm == '-1'){
-    return Product.paginate({category:req.params.category,'price':{$gt:0,$ne:null}},{page:req.params.page, limit: 20, sort:{'price':ascending}})
+    return Product.paginate({category:req.params.category,'price':{$gt:0,$ne:null}},{page:req.params.page, limit: maxSize, sort:{'price':ascending}})
       .then(respondWithResult(res))
       .catch(handleError(res));
   }
 
-  return Product.paginate({ title:regex, category:req.params.category},{page:req.params.page, limit: 20, sort:{'price':ascending}})
+  return Product.paginate({ title:regex, category:req.params.category},{page:req.params.page, limit: maxSize, sort:{'price':ascending}})
       .then(respondWithResult(res))
       .catch(handleError(res)); 
 }
 
-// Gets a single Product from the DB
+// Gets a single Product from the DB5
 export function show(req, res) {
   return Product.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))

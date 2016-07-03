@@ -10,9 +10,9 @@
       "placa de vídeo" : 3,
       "fonte": 4,
       "cooler": 5,
-      "driver": 6,
-      "placa de som": 7,
-      "disco rígido": 8,
+     // "driver": 6,
+     // "placa de som": 7,
+    //  "disco rígido": 8,
       "ssd": 9,
       "memória RAM": 10
     };
@@ -24,9 +24,9 @@
           "placa de vídeo" : null,
           "fonte": null,
           "cooler": null,
-          "driver": null,
-          "placa de som": null,
-          "disco rígido": null,
+        //  "driver": null,
+       //   "placa de som": null,
+        //  "disco rígido": null,
           "ssd": null,
           "memória RAM": null
         },
@@ -56,7 +56,9 @@
         localStorage.custom_computer = angular.toJson(computer);
       },
       loadComputerFromLocalStorage(){
-        return angular.fromJson(localStorage.custom_computer);
+        if(angular.fromJson(localStorage.custom_computer))
+          computer = angular.fromJson(localStorage.custom_computer);
+        return computer;
       }
     };
 

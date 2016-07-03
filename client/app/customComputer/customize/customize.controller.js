@@ -8,8 +8,11 @@ class CustomizeController {
     this.$http = $http;
     this.Util = Util;
     this.CustomComputerService = CustomComputerService;
-
-    this.computer = this.CustomComputerService.loadComputerFromLocalStorage() || this.CustomComputerService.getComputer();
+    if(this.CustomComputerService.getComputer().totalPrice == 0){
+      this.computer = this.CustomComputerService.loadComputerFromLocalStorage() || this.CustomComputerService.getComputer();  
+    }else
+      this.computer = this.CustomComputerService.getComputer();
+    
     this.componentDic = this.CustomComputerService.getCategoryDic();
   }
 

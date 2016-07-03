@@ -7,3 +7,15 @@
 .product-search{
 	margin-top: 10px;
 }
+
+.left-space{
+	margin-left: 5px;
+}
+
+.product-link{
+	color: #555;
+}
+
+.product-link:hover{
+	color: #555;
+}
