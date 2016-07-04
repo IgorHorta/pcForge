@@ -18,18 +18,19 @@
 	.list-group(ng-repeat="product in pc.productList")
 		.list-group-item.clearfix
 			img.product-img(ng-src='{{product.img}}', alt='{{product.title}}', image-loaded)
-			span
+			a.product-link(target="_blank",ng-href='{{product.link}}')
 				span
-						| {{product.title}}
-					br
+					| {{product.title}}
+				
+			span.pull-right.left-space
+				button.btn.btn-default(ng-click="pc.addItem(product)")
+					| Escolher
+
+			.pull-right
+				h4
+					|Total: {{pc.Util.convertToReais(product.price)}}
 				span
-						| {{pc.Util.convertToReais(product.price)}}
-					br
-				span
-						| {{product.store}}
-					br
-				span.pull-right
-					button.btn.btn-default(ng-click="pc.addItem(product)")
-						| Escolher
+					|Loja: {{product.store}}
+
 
 	uib-pagination.pagination-sm(items-per-page="5",ng-change="pc.search(searchTerm)",total-items="pc.totalItems",ng-model="pc.currentPage",max-size="10",boundary-links="true" num-pages="pc.pages")
